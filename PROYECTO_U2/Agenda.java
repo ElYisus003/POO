@@ -2,11 +2,11 @@ package PROYECTO_U2;
 
 public class Agenda {
     private String nombre, apellidoP, apellidoM, correo, fechaNacimiento;
-    private int telefono;
+    private String telefono;
     private byte edad;
     
 	public Agenda(String nombre, String apellidoP, String apellidoM, String correo, String fechaNacimiento,
-			int telefono, byte edad) {
+			String telefono, byte edad) {
 		this.nombre = nombre;
 		this.apellidoP = apellidoP;
 		this.apellidoM = apellidoM;
@@ -29,8 +29,8 @@ public class Agenda {
 	public String getFechaNacimiento() { return fechaNacimiento; }
 	public void setFechaNacimiento(String fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
 
-	public int getTelefono() { return telefono; }
-	public void setTelefono(int telefono) { this.telefono = telefono; }
+	public String getTelefono() { return telefono; }
+	public void setTelefono(String telefono) { this.telefono = telefono; }
 
 	public byte getEdad() {	return edad; }
 	public void setEdad(byte edad) { this.edad = edad; }

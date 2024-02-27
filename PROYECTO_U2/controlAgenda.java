@@ -31,5 +31,29 @@ public class controlAgenda {
 
         return cadena;
     }
+    
+    public String listarMayores() {
+        String cadena = "";
+
+        for(int i = 0; i < cont; i++) {
+            if(array[i].getEdad() >= 18) {
+                cadena += array[i].toString() + "\n";
+            }
+        }
+
+        return cadena;
+    }
+
+    public String listarJuan () {
+        String cadena = "";
+
+        for(int i = 0; i < cont; i++) {
+            if(array[i].getNombre().equals("Juan")) {
+                cadena += array[i].toString() + "\n";
+            }
+        }
+
+        return cadena;
+    }
 
 }
