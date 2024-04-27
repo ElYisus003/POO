@@ -44,6 +44,19 @@ public class controlAgenda {
         return cadena;
     }
 
+    public String reporteJuanes() {
+        String cadena = "";
+
+        for(int i = 0; i < cont; i++) {
+            if(array[i].getNombre().compareTo("Juan") == 0){
+                cadena += array[i].toString() + "\n";
+            }
+        }
+
+        return cadena;
+    }
+
+    /* 
     public String listarJuan () {
         String cadena = "";
 
@@ -55,5 +68,21 @@ public class controlAgenda {
 
         return cadena;
     }
+    */
 
+    public String buscarApellido(String apellido) {
+        String cadena = "";
+
+        for(int i = 0; i < cont; i++) {
+            if(array[i].getApellidoP().equals(apellido)) {
+                cadena += array[i].toString();
+                break;
+            }
+            else {
+                cadena = "No hay nadie con el apellido " + apellido;
+            }
+        }
+
+        return cadena;
+    }
 }

@@ -13,7 +13,7 @@ public class test_Agenda {
         Scanner tcld = new Scanner(System.in);
         int opcion;
         String telefono;
-        String nombre, apellidoP, apellidoM, correo, fechaNacimiento;
+        String nombre, apellidoP, apellidoM, correo, fechaNacimiento, apellido;
         byte edad;
         Agenda agenda;
         controlAgenda cA = new controlAgenda();
@@ -24,7 +24,8 @@ public class test_Agenda {
 			System.out.println("| [2] Listar todos los objetos          |");
             System.out.println("| [3] Listar mayores de edad            |");
             System.out.println("| [4] Listar personas con nombre Juan   |");
-			System.out.println("| [5] Salir                             |");
+            System.out.println("| [5] Buscar apellido                   |");
+			System.out.println("| [6] Salir                             |");
 			System.out.println("=========================================");
 			opcion = tcld.nextInt();
 
@@ -57,11 +58,17 @@ public class test_Agenda {
                     break;
 
                 case 4:
-                    System.out.println(cA.listarJuan());
+                    System.out.println(cA.reporteJuanes());
                     break;
 
                 case 5:
-                    System.out.println("Hay de rato mi todo tibio, saludos a la family.");
+                	System.out.print("Ingresa el apellido a bsucar: ");
+                	apellido = tcld.next();
+                    System.out.println(cA.buscarApellido(apellido));
+                    break;
+
+                case 6:
+                     System.out.println("Hay de rato mi todo tibio, saludos a la family.");
                     break;
 
                 default:
@@ -70,7 +77,7 @@ public class test_Agenda {
             }
             
             lines();
-        } while(opcion != 5);
+        } while(opcion != 6);
         
     }
 
