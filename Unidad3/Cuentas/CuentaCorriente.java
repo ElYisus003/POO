@@ -41,9 +41,8 @@ public class CuentaCorriente extends Cuenta implements iFecha, iOtras_Comisiones
     @Override
     public double comsiones() {
         double comision = 0;
-        GregorianCalendar fechaActual = new GregorianCalendar();
-        int dia = fechaActual.get(Calendar.DAY_OF_MONTH);
-        if (dia == 1) {
+        
+        if (dia() == 1) {
             int n = transacciones - transaccionesExcentas;
             if (n > 0) {
                 comision = n * importeTransaccion;
@@ -57,9 +56,8 @@ public class CuentaCorriente extends Cuenta implements iFecha, iOtras_Comisiones
     @Override
     public double intereses() {
         double interes;
-        GregorianCalendar fechaActual = new GregorianCalendar();
-        int dia = fechaActual.get(Calendar.DAY_OF_MONTH);
-        if (dia != 1) {
+        
+        if (dia() != 1) {
             return 0;
         } else {
             if (super.getSaldo() > 10000) {
@@ -80,26 +78,30 @@ public class CuentaCorriente extends Cuenta implements iFecha, iOtras_Comisiones
 
 	@Override
 	public int dia() {
-		// TODO Auto-generated method stub
-		return 0;
+		GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(DIA_DEL_MES);
 	}
 
 	@Override
 	public int mes() {
-		// TODO Auto-generated method stub
-		return 0;
+		GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(MES_DEL_AÑO);
 	}
 
 	@Override
 	public int año() {
-		// TODO Auto-generated method stub
-		return 0;
+		GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(AÑO);
 	}
 
 	@Override
 	public float calculaComision() {
-		// TODO Auto-generated method stub
-		return 0;
+        float comision = 0;
+		if(dia() == 31 && mes() == 12){
+            comision = (float) (comisionAnual + (comisionAnual * comisionIVA));
+            super.retiro(comision);
+        }
+        return comision;
 	}
 
 }

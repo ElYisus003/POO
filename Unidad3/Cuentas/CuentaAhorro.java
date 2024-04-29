@@ -17,9 +17,7 @@ public class CuentaAhorro extends Cuenta implements iFecha, iOtras_Comisiones {
 
     @Override
     public double comsiones() {
-        GregorianCalendar fechaActual = new GregorianCalendar();
-        int dia = fechaActual.get(Calendar.DAY_OF_MONTH);
-        if (dia == 1) {
+        if (dia() == 1) {
             retiro(cuotaMantenimiento);
             return cuotaMantenimiento;
         } else {
@@ -30,9 +28,8 @@ public class CuentaAhorro extends Cuenta implements iFecha, iOtras_Comisiones {
     @Override
     public double intereses() {
         double intereses;
-        GregorianCalendar fechaActual = new GregorianCalendar();
-        int dia = fechaActual.get(Calendar.DAY_OF_MONTH);
-        if (dia == 1) {
+        
+        if (dia() == 1) {
             intereses = getSaldo() * getTipoInteres() / 100;
             deposito(intereses);
             return intereses;
@@ -48,20 +45,20 @@ public class CuentaAhorro extends Cuenta implements iFecha, iOtras_Comisiones {
 
 	@Override
 	public int dia() {
-		// TODO Auto-generated method stub
-		return 0;
+		GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(DIA_DEL_MES);
 	}
 
 	@Override
 	public int mes() {
-		// TODO Auto-generated method stub
-		return 0;
+		GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(MES_DEL_AÑO);
 	}
 
 	@Override
 	public int año() {
-		// TODO Auto-generated method stub
-		return 0;
+		GregorianCalendar fechaActual = new GregorianCalendar();
+        return fechaActual.get(AÑO);
 	}
 
 	@Override
