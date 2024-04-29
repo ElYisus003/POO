@@ -133,18 +133,19 @@ public class TestCuenta {
         int transaccionesExcentas, opcion;
 
         do {
-            System.out.println("=====================================");
-            System.out.println("| [1] Crear cuenta de ahorro        |");
-            System.out.println("| [2] Crear cuenta corriente        |");
-            System.out.println("| [3] Listar cuentas                |");
-            System.out.println("| [4] Cambios                       |");
-            System.out.println("| [5] Depositos                     |");
-            System.out.println("| [6] Retiros                       |");
-            System.out.println("| [7] Reporte Cuentas Corrientes    |");
-            System.out.println("| [8] Reporte Cuentas Ahorro        |");
-            System.out.println("| [9] Buscar una cuenta             |");
-            System.out.println("| [10] Salir                        |");
-            System.out.println("=====================================");
+            System.out.println("===================================================");
+            System.out.println("| [1] Crear cuenta de ahorro                      |");
+            System.out.println("| [2] Crear cuenta corriente                      |");
+            System.out.println("| [3] Listar cuentas                              |");
+            System.out.println("| [4] Cambios                                     |");
+            System.out.println("| [5] Depositos                                   |");
+            System.out.println("| [6] Retiros                                     |");
+            System.out.println("| [7] Reporte Cuentas Corrientes                  |");
+            System.out.println("| [8] Reporte Cuentas Ahorro                      |");
+            System.out.println("| [9] Buscar una cuenta                           |");
+            System.out.println("| [10] Calcular comisiones, intereses y anualidad |");
+            System.out.println("| [11] Salir                                      |");
+            System.out.println("===================================================");
             opcion = tcld.nextInt();
 
             switch (opcion) {

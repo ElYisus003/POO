@@ -63,8 +63,12 @@ public class CuentaAhorro extends Cuenta implements iFecha, iOtras_Comisiones {
 
 	@Override
 	public float calculaComision() {
-		// TODO Auto-generated method stub
-		return 0;
+        float comision = 0;
+		if(dia() == 1 && mes() == 1 && super.getSaldo() <= 10000) {
+            comision = (float) (comisionAntual + (comisionAnual * comisionIVA));
+            super.retiro(comision);
+        }
+        return comision;
 	}
 
 }
