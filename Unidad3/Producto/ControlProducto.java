@@ -37,6 +37,19 @@ public class ControlProducto {
         return cad;
     }
 
+    public int buscarPosicion(String nombre) {
+		int pos = -1;
+		for (int i = 0; i < con; i++) {
+			if(nombre.equals(ArrayProducto[i].getNombre()))
+				pos = i;
+		}
+		return pos;
+	}
+
+    public Producto regresaCuenta(int pos) {
+		return ArrayProducto[pos];
+	}
+
     public boolean Bajas(String nombre) {
         for (int i = 0; i < con; i++) {
             if (ArrayProducto[i].getNombre().equals(nombre)) {

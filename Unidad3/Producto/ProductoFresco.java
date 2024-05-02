@@ -1,6 +1,6 @@
 package Unidad3.Producto;
 
-public class ProductoFresco extends Producto {
+public class ProductoFresco extends Producto implements OTROS_COSTOS{
     private String fechaEnvasado;
     private String paisOrigen;
     
@@ -22,8 +22,19 @@ public class ProductoFresco extends Producto {
     }
 
     @Override
+    public double calculaOtrosCostos() {
+        return rentaMaquinaria + costoTransporte;
+    }
+    
+    @Override
+	public double costoDepFisAF() {
+		return valorAF * 0.01;
+	}
+
+    @Override
     public String toString() {
         return "ProductoFresco [nombre=" + getNombre() + ", fechaCaducidad=" + getFechaCaducidad() + ", numeroLote=" + getNumeroLote()
                 + ", costoProduccion=" + getCostoProduccion() + ", fechaEnvasado=" + fechaEnvasado + ", paisOrigen=" + paisOrigen + "]";
     }
+	
 }

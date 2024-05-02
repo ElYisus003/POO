@@ -1,6 +1,6 @@
 package Unidad3.Producto;
 
-public class ProductoCongelado extends Producto {
+public class ProductoCongelado extends Producto implements OTROS_COSTOS{
     private int temperaturaCongelacion;
 
     public ProductoCongelado(String nombre, String fechaCaducidad, int numeroLote, double costoProduccion, int temperaturaCongelacion) {
@@ -14,6 +14,16 @@ public class ProductoCongelado extends Producto {
     public double precioVenta() {
         return getCostoProduccion() + (getCostoProduccion() * 0.3) + (getCostoProduccion() * 0.1)
                 + (getCostoProduccion() * 0.21) + (getCostoProduccion() * 0.6);
+    }
+
+    @Override
+    public double calculaOtrosCostos() {
+        return rentaMaquinaria + mantoEquipo + costoTransporte;
+    }
+
+    @Override
+    public double costoDepFisAF() {
+        return valorAF * 0.03;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package Unidad3.Producto;
 
-public class ProductoRefrigerado extends Producto {
+public class ProductoRefrigerado extends Producto implements OTROS_COSTOS {
     private int codigoSupAlimentaria;
 
     public ProductoRefrigerado(String nombre, String fechaCaducidad, int numeroLote, double costoProduccion, int codigoSupAlimentaria) {
@@ -13,6 +13,16 @@ public class ProductoRefrigerado extends Producto {
 
     public double precioVenta() {
         return getCostoProduccion() + (getCostoProduccion() * 0.3) + (getCostoProduccion() * 0.1);
+    }
+
+    @Override
+    public double calculaOtrosCostos() {
+        return rentaMaquinaria + mantoEquipo;
+    }
+
+    @Override
+    public double costoDepFisAF() {
+        return valorAF * 0.02;
     }
 
     @Override

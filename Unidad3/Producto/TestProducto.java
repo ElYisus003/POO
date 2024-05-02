@@ -12,9 +12,12 @@ public class TestProducto {
         Scanner tcld = new Scanner(System.in);
         String nombre, nuevoN, fechaCaducidad, nuevaFC, fechaEnvasado, paisOrigen;
         int numeroLote, nuevoNL, temperaturaCongelacion, codigoSupAlimentaria, opcion, opcionMod,
-            opcionAltas, cont = 0, max;
+            opcionAltas, cont = 0, max, pos;
         double costoProduccion, nuevoCP;
         Producto producto;
+        ProductoFresco pF;
+        ProductoRefrigerado pR;
+        ProductoCongelado pC;
 
         System.out.println("Cuantos productos deseas registrar? ");
         max = tcld.nextInt();
@@ -28,7 +31,9 @@ public class TestProducto {
             System.out.println("| [4] Modificar producto         |");
             System.out.println("| [5] Reporte de productos       |");
             System.out.println("| [6] Calcular precio de venta   |");
-            System.out.println("| [7] Salir                      |");
+            System.out.println("| [7] Calcular otros costos      |");
+            System.out.println("| [8] Depreciacion fiscal        |");
+            System.out.println("| [9] Salir                      |");
             System.out.println("|                                |");
             System.out.println("| Registros disponibles: " + (max-cont) + "       |");
             System.out.println("==================================");
@@ -151,9 +156,45 @@ public class TestProducto {
                     System.out.println(cP.CalcularPrecioVenta(nombre));
                     break;
 
+                case 7:
+                    System.out.print("Nombre del producto: ");
+                    nombre = tcld.next();
+                    pos = cP.buscarPosicion(nombre);
+
+                    if (cP.regresaCuenta(pos) instanceof ProductoFresco) {
+                        pF = (ProductoFresco) cP.regresaCuenta(pos);
+                        System.out.println("Otros costos: " + pF.calculaOtrosCostos());
+                    } else if (cP.regresaCuenta(pos) instanceof ProductoRefrigerado) {
+                        pR = (ProductoRefrigerado) cP.regresaCuenta(pos);
+                        System.out.println("Otros costos: " + pR.calculaOtrosCostos());
+                    } else if (cP.regresaCuenta(pos) instanceof ProductoCongelado) {
+                        pC = (ProductoCongelado) cP.regresaCuenta(pos);
+                        System.out.println("Otros costos: " + pC.calculaOtrosCostos());
+                    }
+
+                    break;
+                
+                case 8:
+                    System.out.print("Nombre del producto: ");
+                    nombre = tcld.next();
+                    pos = cP.buscarPosicion(nombre);
+
+                    if (cP.regresaCuenta(pos) instanceof ProductoFresco) {
+                        pF = (ProductoFresco) cP.regresaCuenta(pos);
+                        System.out.println("Depreciacion fiscal: " + pF.costoDepFisAF());
+                    } else if (cP.regresaCuenta(pos) instanceof ProductoRefrigerado) {
+                        pR = (ProductoRefrigerado) cP.regresaCuenta(pos);
+                        System.out.println("Depreciacion fiscal: " + pR.costoDepFisAF());
+                    } else if (cP.regresaCuenta(pos) instanceof ProductoCongelado) {
+                        pC = (ProductoCongelado) cP.regresaCuenta(pos);
+                        System.out.println("Depreciacion fiscal: " + pC.costoDepFisAF());
+                    }
+
+                    break;
+
             }
             lines();
-        } while (opcion != 7);
+        } while (opcion != 9);
         
     }
 
