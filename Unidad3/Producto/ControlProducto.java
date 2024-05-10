@@ -31,7 +31,7 @@ public class ControlProducto {
         String cad = "";
         for (int i = 0; i < con; i++) {
             if (ArrayProducto[i].getNombre().equals(nombre)) {
-                cad += ArrayProducto[i].toString() + "\n";
+                cad = ArrayProducto[i].toString();
             }
         }
         return cad;
@@ -52,12 +52,14 @@ public class ControlProducto {
 
     public boolean Bajas(String nombre) {
         for (int i = 0; i < con; i++) {
-            if (ArrayProducto[i].getNombre().equals(nombre)) {
-                for (int j = i; j < con - 1; j++) {
-                    ArrayProducto[j] = ArrayProducto[j + 1];
+            try {
+                if (ArrayProducto[i].getNombre().equals(nombre)) {
+                    ArrayProducto[i] = null;
+                    con--;
+                    return true;
                 }
-                con--;
-                return true;
+            } catch (NullPointerException e) {
+                System.out.println("jajajaja pendejo, no puedes borrar un objeto nulo");
             }
         }
         return false;
@@ -68,36 +70,51 @@ public class ControlProducto {
         switch (opcion) {
             case 1:
                 for (int i = 0; i < con; i++) {
+                   try {
                     if (ArrayProducto[i].getNombre().equals(nombre)) {
                         ArrayProducto[i].setNombre(cambioString);
                         return true;
                     }
+                   } catch (NullPointerException e) {
+                   }
                 }   
                 break;
 
             case 2:
                 for (int i = 0; i < con; i++) {
-                    if (ArrayProducto[i].getNombre().equals(nombre)) {
-                        ArrayProducto[i].setFechaCaducidad(cambioString);
-                        return true;
+                    try {
+                        if (ArrayProducto[i].getNombre().equals(nombre)) {
+                            ArrayProducto[i].setFechaCaducidad(cambioString);
+                            return true;
+                        }
+                    } catch (NullPointerException e) {
+                        // TODO: handle exception
                     }
                 }   
                 break;
 
             case 3:
                 for (int i = 0; i < con; i++) {
-                    if (ArrayProducto[i].getNombre().equals(nombre)) {
-                        ArrayProducto[i].setNumeroLote(cambioInt);
-                        return true;
+                    try {
+                        if (ArrayProducto[i].getNombre().equals(nombre)) {
+                            ArrayProducto[i].setNumeroLote(cambioInt);
+                            return true;
+                        }
+                    } catch (NullPointerException e) {
+                        // TODO: handle exception
                     }
                 }   
                 break;
 
             case 4:
                 for (int i = 0; i < con; i++) {
-                    if (ArrayProducto[i].getNombre().equals(nombre)) {
-                        ArrayProducto[i].setCostoProduccion(cambioDouble);
-                        return true;
+                    try {
+                        if (ArrayProducto[i].getNombre().equals(nombre)) {
+                            ArrayProducto[i].setCostoProduccion(cambioDouble);
+                            return true;
+                        }
+                    } catch (NullPointerException e) {
+                        // TODO: handle exception
                     }
                 }   
                 break;
