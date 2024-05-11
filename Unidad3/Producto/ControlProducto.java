@@ -22,7 +22,11 @@ public class ControlProducto {
     public String Reporte() {
         String cad = "";
         for (int i = 0; i < con; i++) {
-            cad += ArrayProducto[i].toString() + "\n";
+            try {
+                cad += ArrayProducto[i].toString() + "\n";
+            } catch (NullPointerException e) {
+                // TODO: handle exception
+            }
         }
         return cad;
     }
@@ -30,8 +34,12 @@ public class ControlProducto {
     public String Buscar(String nombre) {
         String cad = "";
         for (int i = 0; i < con; i++) {
-            if (ArrayProducto[i].getNombre().equals(nombre)) {
-                cad = ArrayProducto[i].toString();
+            try {
+                if (ArrayProducto[i].getNombre().equals(nombre)) {
+                    cad = ArrayProducto[i].toString();
+                }
+            } catch (NullPointerException e) {
+                // TODO: handle exception
             }
         }
         return cad;
@@ -59,7 +67,6 @@ public class ControlProducto {
                     return true;
                 }
             } catch (NullPointerException e) {
-                System.out.println("jajajaja pendejo, no puedes borrar un objeto nulo");
             }
         }
         return false;
