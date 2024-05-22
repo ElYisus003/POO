@@ -1,20 +1,80 @@
 package ARCHIVOS;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class SeriarAlumno {
-    private ObjectOutputStream oos;
+    private static ObjectOutputStream oos;
+    private static ObjectInputStream ois;
     private static Scanner tcld = new Scanner(System.in);
 
-    public void abrirArchivo() throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        int opcion = 0;
+        abrirArchivo();
+        abrirArchivoLectura();
+        
+        do {
+            System.out.println("=====================================");
+            System.out.println("| [1] Escribir en el archivo        |");
+            System.out.println("| [2] Leer del archivo              |");
+            System.out.println("| [3] Salir                         |");
+            System.out.println("=====================================");
+            opcion = tcld.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    escribirEnArchivo();
+                    break;
+
+                case 2:
+                    leerAlumnos();
+                    break;
+
+                case 3:
+                    cerrarArchivo();
+                    cerrarFlujoLectura();
+                    System.out.println("Saliendo...");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
+
+            lines();
+
+        } while (opcion != 3);
+    }
+
+    public static void abrirArchivoLectura() throws FileNotFoundException, IOException {
+        ois = new ObjectInputStream(new FileInputStream("Alumnos.dat"));
+    }
+
+    public static void leerAlumnos() throws ClassNotFoundException, IOException {
+        Alumno alumno;
+
+        while(true) {
+        alumno = (Alumno) ois.readObject();
+        System.out.println(alumno.toString());
+        }
+    }
+
+    public static void cerrarFlujoLectura() throws IOException {
+        if (ois != null) {
+            ois.close();
+        }
+    }
+
+    public static void  abrirArchivo() throws FileNotFoundException, IOException {
         oos = new ObjectOutputStream(new FileOutputStream("Alumnos.dat"));
     }
 
-    public void EscribirEnArchivo() throws IOException {
+    public static void escribirEnArchivo() throws IOException {
         String nombre, apellidoPaterno;
         double promedio;
         Alumno alumno;
@@ -31,10 +91,14 @@ public class SeriarAlumno {
         
     }
 
-    public void cerrarArchivo() throws IOException {
+    public static void cerrarArchivo() throws IOException {
         if (oos != null) {
             oos.close();
         }
+    }
+
+    public static void lines() {
+        System.out.println("\n=====================================\n");
     }
 
 }

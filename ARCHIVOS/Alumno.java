@@ -1,6 +1,8 @@
 package ARCHIVOS;
 
-public class Alumno {
+import java.io.Serializable;
+
+public class Alumno implements Serializable{
     private String nombre, apellidoPaterno;
     private double promedio;
 
@@ -19,6 +21,9 @@ public class Alumno {
     public double getPromedio() { return promedio; }
     public void setPromedio(double promedio) { this.promedio = promedio; }
 
-    
+    @Override
+    public String toString() {
+        return "Alumno{" + "nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", promedio=" + promedio + '}';
+    }    
 
 }
