@@ -1,5 +1,11 @@
 package Unidad3.Producto;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class TestProducto {
@@ -9,6 +15,10 @@ public class TestProducto {
     }
 
     public static void main(String[] args) {
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        ObjectInputStream ois = null;
+        ObjectOutputStream oos = null;
         Scanner tcld = new Scanner(System.in);
         String nombre, nuevoN, fechaCaducidad, nuevaFC, fechaEnvasado, paisOrigen;
         int numeroLote, nuevoNL, temperaturaCongelacion, codigoSupAlimentaria, opcion, opcionMod,
@@ -21,7 +31,18 @@ public class TestProducto {
 
         System.out.println("Cuantos productos deseas registrar? ");
         max = tcld.nextInt();
-        ControlProducto cP = new ControlProducto(max);
+        ControlProducto cP = null;
+
+        try {
+        File archivo = new File("Productos.dat");
+        if (archivo.exists()) {
+            fis = new FileInputStream(archivo);
+            ois = new ObjectInputStream(fis);
+            cP = (ControlProducto) ois.readObject();
+
+        } else {
+            cP = new ControlProducto(max);
+        }
 
         do {
             System.out.println("==================================");
@@ -193,8 +214,36 @@ public class TestProducto {
                     break;
 
             }
+
             lines();
+
         } while (opcion != 9);
+
+        fos = new FileOutputStream(archivo);
+        oos = new ObjectOutputStream(fos);
+        oos.writeObject(cP);
+
+    } catch (IOException e) {
+        System.out.println("Error: " + e.toString());
+
+    } catch (ClassNotFoundException e) {
+        System.out.println("Error: La clase no existe. " + e.toString());
+
+    } finally {
+        try {
+            if(ois != null) {
+                fis.close();
+                ois.close();
+            }
+
+            if(oos != null) {
+                fos.close();
+                oos.close();
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.toString());
+        }
+    }
         
     }
 

@@ -1,6 +1,8 @@
 package Unidad3.Producto;
 
-public class ControlProducto {
+import java.io.Serializable;
+
+public class ControlProducto implements Serializable {
     private Producto ArrayProducto[];
     private int con=0, max;
 

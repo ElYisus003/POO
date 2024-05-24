@@ -1,6 +1,8 @@
 package Unidad3.Producto;
 
-public class ProductoRefrigerado extends Producto implements OTROS_COSTOS {
+import java.io.Serializable;
+
+public class ProductoRefrigerado extends Producto implements OTROS_COSTOS, Serializable {
     private int codigoSupAlimentaria;
 
     public ProductoRefrigerado(String nombre, String fechaCaducidad, int numeroLote, double costoProduccion, int codigoSupAlimentaria) {

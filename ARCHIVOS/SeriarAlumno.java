@@ -1,5 +1,6 @@
 package ARCHIVOS;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -58,9 +59,13 @@ public class SeriarAlumno {
     public static void leerAlumnos() throws ClassNotFoundException, IOException {
         Alumno alumno;
 
-        while(true) {
-        alumno = (Alumno) ois.readObject();
-        System.out.println(alumno.toString());
+        try {
+            while(true) {
+            alumno = (Alumno) ois.readObject();
+            System.out.println(alumno.toString());
+            }
+        } catch (EOFException e) {
+            return;
         }
     }
 

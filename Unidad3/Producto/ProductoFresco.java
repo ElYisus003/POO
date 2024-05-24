@@ -1,6 +1,8 @@
 package Unidad3.Producto;
 
-public class ProductoFresco extends Producto implements OTROS_COSTOS{
+import java.io.Serializable;
+
+public class ProductoFresco extends Producto implements OTROS_COSTOS, Serializable{
     private String fechaEnvasado;
     private String paisOrigen;
     
